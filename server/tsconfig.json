@@ -1,6 +1,6 @@
 {
-  "rootDir": "/src",
-  "outDir": "/dist",
+  "rootDir": "./src",
+  "outDir": "dist",
 
   "compilerOptions": {
     "target": "esnext",

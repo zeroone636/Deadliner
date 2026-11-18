@@ -1,11 +1,11 @@
 import express, { type Express, type Request, type Response } from 'express';
 
 const app: Express = express();
-const PORT = 3000;
+const PORT = 8000;
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/api', (req: Request, res: Response) => {
   res.json({
-    message: "Здарова кент!",
+    message: "Hello world!"
   })
 });
 
