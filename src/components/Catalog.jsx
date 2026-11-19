@@ -5,14 +5,10 @@ import folder from '../img/folder.svg'
 import calendar from '../img/calendar.svg'
 import setting from '../img/setting.svg'
 import coolicon from '../img/coolicon.svg'
+import monitor from '../img/monitor.svg'
+import arrow from '../img/arrow_catalog.svg'
 
 const ICONS = {
-  monitor: (
-    <>
-      <rect x="2" y="3" width="20" height="14" rx="2" />
-      <path d="M8 21h8M12 17v4" />
-    </>
-  ),
   bus: (
     <>
       <rect x="4" y="3" width="16" height="15" rx="3" />
@@ -80,7 +76,6 @@ const ICONS = {
       <path d="M20 20l-4-4" />
     </>
   ),
-  arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   chevron: <path d="M6 9l6 6 6-6" />,
   user: (
     <>
@@ -278,31 +273,61 @@ export default function Catalog() {
             </ul>
 
             <div className="grid">
-              {cards.length === 0 && (
-                <p className="empty">Ничего не найдено. Попробуйте другой запрос.</p>
-              )}
-              {cards.map((c) => (
-                <article
-                  key={c.id}
-                  className={`card ${activeCat === c.id ? "is-active" : ""}`}
-                >
-                  <div className="card__top">
-                    <span className="card__icon">
-                      <Icon name={c.cardIcon} size={56} stroke={1.5} />
-                    </span>
-                    <h2>{c.title}</h2>
-                    <p>{c.text}</p>
-                    <button
-                      className="card__go"
-                      aria-label={`Открыть: ${c.title}`}
-                      onClick={() => setActiveCat(c.id)}
-                    >
-                      <Icon name="arrow" size={16} stroke={2} />
-                    </button>
-                  </div>
-                  <div className="card__foot">{pluralDocs(c.count)}</div>
-                </article>
-              ))}
+              <article className="card">
+                <div className="card__top">
+                  <span className="card__icon">
+                    <img id="monitor" src={monitor} alt="картинка монитора" />
+                  </span>
+                  <h2 className="gridName">Гарантия</h2>
+                  <p>Срок действия ваших гарантий</p>
+                  <button className="card__go" aria-label="Открыть">
+                    <img src={arrow} alt="картинка стрелки" />
+                  </button>
+                </div>
+                <div className="card__foot">0 документов</div>
+              </article>
+
+              <article className="card">
+                <div className="card__top">
+                  <span className="card__icon">
+                    {/* сюда иконку */}
+                  </span>
+                  <h2>Название</h2>
+                  <p>Описание категории</p>
+                  <button className="card__go" aria-label="Открыть">
+                    <Icon name="arrow" size={16} stroke={2} />
+                  </button>
+                </div>
+                <div className="card__foot">0 документов</div>
+              </article>
+
+              <article className="card">
+                <div className="card__top">
+                  <span className="card__icon">
+                    {/* сюда иконку */}
+                  </span>
+                  <h2>Название</h2>
+                  <p>Описание категории</p>
+                  <button className="card__go" aria-label="Открыть">
+                    <Icon name="arrow" size={16} stroke={2} />
+                  </button>
+                </div>
+                <div className="card__foot">0 документов</div>
+              </article>
+
+              <article className="card">
+                <div className="card__top">
+                  <span className="card__icon">
+                    {/* сюда иконку */}
+                  </span>
+                  <h2>Название</h2>
+                  <p>Описание категории</p>
+                  <button className="card__go" aria-label="Открыть">
+                    <Icon name="arrow" size={16} stroke={2} />
+                  </button>
+                </div>
+                <div className="card__foot">0 документов</div>
+              </article>
             </div>
           </div>
         </main>
