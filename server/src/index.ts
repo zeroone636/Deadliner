@@ -1,4 +1,4 @@
-import { pool } from "./config/db.ts";
+import { db } from "./config/db.ts";
 import express, { type Express, type Request, type Response } from "express";
 
 const app: Express = express();
@@ -9,7 +9,6 @@ app.get("/api", (req: Request, res: Response) => {
     message: "Hello world!",
   });
 });
-const result = await pool.query("SELECT NOW()");
 
 app.listen(PORT, () => {
   console.log(`Start server on: http://localhost:${PORT}`);
