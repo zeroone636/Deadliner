@@ -1,14 +1,10 @@
-import { db } from "./config/db.ts";
+import { userRouter } from "./routes/userRouter.ts";
 import express, { type Express, type Request, type Response } from "express";
 
 const app: Express = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
-app.get("/api", (req: Request, res: Response) => {
-  res.json({
-    message: "Hello world!",
-  });
-});
+app.use("/api/users", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Start server on: http://localhost:${PORT}`);

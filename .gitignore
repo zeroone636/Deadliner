@@ -2,9 +2,11 @@ node_modules
 server/node_modules
 server/.env
 server/.env.*
+server/!.env.example
 
 .env
 .env.*
+!.env.example
 
 .idea
 .vscode
