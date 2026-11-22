@@ -7,209 +7,73 @@ import setting from '../img/setting.svg'
 import coolicon from '../img/coolicon.svg'
 import monitor from '../img/monitor.svg'
 import arrow from '../img/arrow_catalog.svg'
-
-const ICONS = {
-  bus: (
-    <>
-      <rect x="4" y="3" width="16" height="15" rx="3" />
-      <path d="M4 11h16M7 18v3M17 18v3" />
-      <circle cx="8" cy="14.5" r=".8" />
-      <circle cx="16" cy="14.5" r=".8" />
-    </>
-  ),
-  file: (
-    <>
-      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-      <path d="M14 3v5h5M9 13h6M9 17h4" />
-    </>
-  ),
-  card: (
-    <>
-      <rect x="2" y="5" width="20" height="14" rx="2" />
-      <path d="M2 10h20M6 15h4" />
-    </>
-  ),
-  umbrella: (
-    <>
-      <path d="M12 3a9 9 0 0 0-9 9h18a9 9 0 0 0-9-9z" />
-      <path d="M12 12v6a2 2 0 0 0 4 0" />
-    </>
-  ),
-  shield: (
-    <>
-      <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
-      <path d="M9 12l2 2 4-4" />
-    </>
-  ),
-  plus: (
-    <>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 8v8M8 12h8" />
-    </>
-  ),
-  folder: (
-    <>
-      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-    </>
-  ),
-  bell: (
-    <>
-      <path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7" />
-      <path d="M10 20a2 2 0 0 0 4 0" />
-    </>
-  ),
-  calendar: (
-    <>
-      <rect x="3" y="4" width="18" height="17" rx="2" />
-      <path d="M3 10h18M8 2v4M16 2v4" />
-    </>
-  ),
-  gear: (
-    <>
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" />
-    </>
-  ),
-  search: (
-    <>
-      <circle cx="11" cy="11" r="7" />
-      <path d="M20 20l-4-4" />
-    </>
-  ),
-  chevron: <path d="M6 9l6 6 6-6" />,
-  user: (
-    <>
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 21c1-5 15-5 16 0" />
-    </>
-  ),
-};
-
-function Icon({ name, size = 20, stroke = 1.8 }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={stroke}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {ICONS[name]}
-    </svg>
-  );
-}
-
-const CATEGORIES = [
-  {
-    id: "warranty",
-    label: "Гарантии",
-    sideIcon: "shield",
-    cardIcon: "monitor",
-    title: "Гарантия",
-    text: "Срок действия ваших гарантий",
-    count: 1,
-  },
-  {
-    id: "insurance",
-    label: "Страховки",
-    sideIcon: "umbrella",
-    cardIcon: "bus",
-    title: "Страховки",
-    text: "Страховые полисы и договоры",
-    count: 1,
-  },
-  {
-    id: "contracts",
-    label: "Договоры",
-    sideIcon: "file",
-    cardIcon: "file",
-    title: "Договоры",
-    text: "Важные договоры и соглашения",
-    count: 1,
-  },
-  {
-    id: "cards",
-    label: "Карты",
-    sideIcon: "card",
-    cardIcon: "card",
-    title: "Карты",
-    text: "Банковские и скидочные карты",
-    count: 1,
-  },
-  {
-    id: "other",
-    label: "Прочее",
-    sideIcon: "plus",
-    cardIcon: "folder",
-    title: "Прочее",
-    text: "Остальные документы",
-    count: 0,
-  },
-];
-
-function pluralDocs(n) {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return `${n} документ`;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14))
-    return `${n} документа`;
-  return `${n} документов`;
-}
+import car from '../img/car.svg'
+import file from '../img/file.svg'
+import card from '../img/card.svg'
+import user from '../img/user.svg'
+import notifications from '../img/notification_outline_dot.svg'
+import search from '../img/search-normal.svg'
+import card1 from '../img/card1.svg'
+import file1 from '../img/file1.svg'
+import shield from '../img/shield.svg'
+import umbrella from '../img/umbrella.svg'
+import plus from '../img/plus.svg'
 
 export default function Catalog() {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
-
-  const q = query.trim().toLowerCase();
-  const cards = CATEGORIES.filter(
-    (c) =>
-      c.id !== "other" &&
-      (!q || c.title.toLowerCase().includes(q) || c.text.toLowerCase().includes(q))
-  );
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="app">
-      <aside className="sidebar">
-        <div className="logo">DeadLiner</div>
+      <aside className={`sidebar ${menuOpen ? "is-open" : ""}`}>
+        <div className="sidebar__top">
+          <div className="logo">DeadLiner</div>
+          <button
+            className="burger"
+            aria-label="Меню"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
 
-          <nav className="nav">
-            <button
-              className={`nav__item ${nav === "catalog" ? "is-active" : ""}`}
-              onClick={() => setNav("catalog")}
-            >
-              <img src={folder} alt="иконка папки" />
-              Каталог
-            </button>
+        <nav className="nav">
+          <button
+            className={`cats__item ${nav === "catalog" ? "is-active" : ""}`}
+            onClick={() => { setNav("catalog"); setMenuOpen(false); }}
+          >
+            <img src={folder} alt="иконка папки" />
+            Каталог
+          </button>
 
-            <button
-              className={`nav__item ${nav === "reminders" ? "is-active" : ""}`}
-              onClick={() => setNav("reminders")}
-            >
-              <img src={coolicon} alt="иконка напоминаний" />
-              Напоминания
-            </button>
+          <button
+            className={`cats__item ${nav === "reminders" ? "is-active" : ""}`}
+            onClick={() => { setNav("reminders"); setMenuOpen(false); }}
+          >
+            <img src={coolicon} alt="иконка напоминаний" />
+            Напоминания
+          </button>
 
-            <button
-              className={`nav__item ${nav === "calendar" ? "is-active" : ""}`}
-              onClick={() => setNav("calendar")}
-            >
-              <img src={calendar} alt="иконка календаря" />
-              Календарь
-            </button>
+          <button
+            className={`cats__item ${nav === "calendar" ? "is-active" : ""}`}
+            onClick={() => { setNav("calendar"); setMenuOpen(false); }}
+          >
+            <img src={calendar} alt="иконка календаря" />
+            Календарь
+          </button>
 
-            <button
-              className={`nav__item ${nav === "settings" ? "is-active" : ""}`}
-              onClick={() => setNav("settings")}
-            >
-              <img src={setting} alt="иконка настроек" />
-              Настройки
-            </button>
-          </nav>
+          <button
+            className={`cats__item ${nav === "settings" ? "is-active" : ""}`}
+            onClick={() => { setNav("settings"); setMenuOpen(false); }}
+          >
+            <img src={setting} alt="иконка настроек" />
+            Настройки
+          </button>
+        </nav>
 
         <div className="promo">
           <img className="promo__bolt" src={lightning} alt="Картиинка молнии" />
@@ -227,19 +91,18 @@ export default function Catalog() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <Icon name="search" size={18} />
+            <img src={search} alt="картинка поиска" />
           </label>
 
           <div className="topbar__right">
             <button className="bell" aria-label="Уведомления">
-              <Icon name="bell" size={22} />
+              <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
             </button>
             <button className="avatar" aria-label="Профиль">
               <span className="avatar__circle">
-                <Icon name="user" size={20} />
+                <img src={user} alt="картинка пользователя" />
               </span>
-              <Icon name="chevron" size={16} />
             </button>
           </div>
         </header>
@@ -259,74 +122,136 @@ export default function Catalog() {
 
           <div className="content__body">
             <ul className="cats">
-              {CATEGORIES.map((c) => (
-                <li key={c.id}>
-                  <button
-                    className={`cats__item ${activeCat === c.id ? "is-active" : ""}`}
-                    onClick={() => setActiveCat(c.id)}
-                  >
-                    <Icon name={c.sideIcon} size={18} />
-                    {c.label}
-                  </button>
-                </li>
-              ))}
+              <li>
+                <button
+                  className={`cats__item ${activeCat === "warranty" ? "is-active" : ""}`}
+                  onClick={() => setActiveCat("warranty")}
+                >
+                  <img src={shield} alt="иконка щита" />
+                  Гарантии
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className={`cats__item ${activeCat === "insurance" ? "is-active" : ""}`}
+                  onClick={() => setActiveCat("insurance")}
+                >
+                  <img src={umbrella} alt="иконка зонта" />
+                  Страховки
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className={`cats__item ${activeCat === "contracts" ? "is-active" : ""}`}
+                  onClick={() => setActiveCat("contracts")}
+                >
+                  <img src={file1} alt="иконка договора" />
+                  Договоры
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className={`cats__item ${activeCat === "cards" ? "is-active" : ""}`}
+                  onClick={() => setActiveCat("cards")}
+                >
+                  <img src={card1} alt="иконка карты" />
+                  Карты
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className={`cats__item ${activeCat === "other" ? "is-active" : ""}`}
+                  onClick={() => setActiveCat("other")}
+                >
+                  <img src={plus} alt="иконка плюса" />
+                  Прочее
+                </button>
+              </li>
             </ul>
 
             <div className="grid">
-              <article className="card">
-                <div className="card__top">
-                  <span className="card__icon">
-                    <img id="monitor" src={monitor} alt="картинка монитора" />
-                  </span>
-                  <h2 className="gridName">Гарантия</h2>
-                  <p>Срок действия ваших гарантий</p>
-                  <button className="card__go" aria-label="Открыть">
-                    <img src={arrow} alt="картинка стрелки" />
-                  </button>
+              <article className={`card ${activeCat === "warranty" ? "is-active" : ""}`}>
+                <div className="card__first">
+                  <div className="card__top">
+                    <div className="mainCardIcon">
+                      <span className="card__icon">
+                        <img id="monitor" src={monitor} alt="картинка монитора" />
+                      </span>
+                    </div>
+                    <h2 className="gridName">Гарантия</h2>
+                    <p>Срок действия ваших гарантий</p>
+                  </div>
+                  <div className="arrow_icon">
+                    <button className="card__go" aria-label="Открыть">
+                      <img src={arrow} alt="картинка стрелки" />
+                    </button>
+                  </div>
                 </div>
-                <div className="card__foot">0 документов</div>
+                <div className="card__foot">1 документов</div>
               </article>
 
-              <article className="card">
-                <div className="card__top">
-                  <span className="card__icon">
-                    {/* сюда иконку */}
-                  </span>
-                  <h2>Название</h2>
-                  <p>Описание категории</p>
-                  <button className="card__go" aria-label="Открыть">
-                    <Icon name="arrow" size={16} stroke={2} />
-                  </button>
+              <article className={`card ${activeCat === "insurance" ? "is-active" : ""}`}>
+                <div className="card__first">
+                  <div className="card__top">
+                    <div className="mainCardIcon">
+                      <span className="card__icon">
+                        <img id="car" src={car} alt="картинка машины" />
+                      </span>
+                    </div>
+                    <h2 className="gridName">Страховки</h2>
+                    <p>Страховые полисы и договоры</p>
+                  </div>
+                  <div className="arrow_icon">
+                    <button className="card__go" aria-label="Открыть">
+                      <img src={arrow} alt="картинка стрелки" />
+                    </button>
+                  </div>
                 </div>
-                <div className="card__foot">0 документов</div>
+                <div className="card__foot">1 документов</div>
               </article>
 
-              <article className="card">
-                <div className="card__top">
-                  <span className="card__icon">
-                    {/* сюда иконку */}
-                  </span>
-                  <h2>Название</h2>
-                  <p>Описание категории</p>
-                  <button className="card__go" aria-label="Открыть">
-                    <Icon name="arrow" size={16} stroke={2} />
-                  </button>
+              <article className={`card ${activeCat === "contracts" ? "is-active" : ""}`}>
+                <div className="card__first">
+                  <div className="card__top">
+                    <div className="mainCardIcon">
+                      <span className="card__icon">
+                        <img id="file" src={file} alt="картинка файла" />
+                      </span>
+                    </div>
+                    <h2 className="gridName">Договоры</h2>
+                    <p>Важные договоры и соглашения</p>
+                  </div>
+                  <div className="arrow_icon">
+                    <button className="card__go" aria-label="Открыть">
+                      <img src={arrow} alt="картинка стрелки" />
+                    </button>
+                  </div>
                 </div>
-                <div className="card__foot">0 документов</div>
+                <div className="card__foot">1 документов</div>
               </article>
 
-              <article className="card">
-                <div className="card__top">
-                  <span className="card__icon">
-                    {/* сюда иконку */}
-                  </span>
-                  <h2>Название</h2>
-                  <p>Описание категории</p>
-                  <button className="card__go" aria-label="Открыть">
-                    <Icon name="arrow" size={16} stroke={2} />
-                  </button>
+              <article className={`card ${activeCat === "cards" ? "is-active" : ""}`}>
+                <div className="card__first">
+                  <div className="card__top">
+                    <div className="mainCardIcon">
+                      <span className="card__icon">
+                        <img id="card" src={card} alt="картинка банковской карты" />
+                      </span>
+                    </div>
+                    <h2 className="gridName">Карты</h2>
+                    <p>Банковские и скидочные карты</p>
+                  </div>
+                  <div className="arrow_icon">
+                    <button className="card__go" aria-label="Открыть">
+                      <img src={arrow} alt="картинка стрелки" />
+                    </button>
+                  </div>
                 </div>
-                <div className="card__foot">0 документов</div>
+                <div className="card__foot">1 документов</div>
               </article>
             </div>
           </div>
