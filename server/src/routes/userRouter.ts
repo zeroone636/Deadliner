@@ -2,6 +2,7 @@ import express, { type Request, type Response, type Router } from "express";
 import { db } from "../config/db.ts";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
 export const userRouter: Router = express.Router();
 
 dotenv.config();
@@ -40,11 +41,9 @@ userRouter.post(
         });
       }
 
-      const check = await db.query("SELECT id FROM users WHERE username = $1", [
-        clearUser,
-      ]);
+      const exist = await checkUserExists(clearUser);
 
-      if (check.rows.length > 0) {
+      if (exist) {
         return res.status(409).json({
           success: false,
           message: "Пользователь уже существует",
@@ -53,15 +52,12 @@ userRouter.post(
 
       const hash = await bcrypt.hash(password, 10);
 
-      await db.query("INSERT INTO users (username, password) VALUES ($1, $2)", [
-        clearUser,
-        hash,
-      ]);
+      const createdUser = await createUser(username, hash);
 
       res.status(201).json({
         success: true,
         message: "Регистрация прошла успешно!",
-        user: clearUser,
+        user: createdUser,
       });
     } catch (error) {
       console.error(error);
@@ -88,9 +84,14 @@ userRouter.post(
 
       const clearUser = username.trim();
 
-      const result = await db.query("SELECT * FROM users WHERE username = $1", [
-        clearUser,
-      ]);
+      const exist = await checkUserExists(clearUser);
+
+      if (!exist) {
+        return res.status(401).json({
+          success: false,
+          message: "Неверный логин или пароль",
+        });
+      }
 
       if (!clearUser || !password) {
         return res.status(400).json({
@@ -99,13 +100,7 @@ userRouter.post(
         });
       }
 
-      if (result.rows.length === 0) {
-        return res.status(401).json({
-          message: "Неверный логин или пароль",
-        });
-      }
-
-      const user = result.rows[0];
+      const user = await getUser(clearUser);
 
       const valid = await bcrypt.compare(password, user.password);
 
