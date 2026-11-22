@@ -1,9 +1,11 @@
 import express, { type Request, type Response, type Router } from "express";
-import { db } from "../config/db.ts";
+import { createHash, randomBytes } from "node:crypto";
+import { createSession } from "../models/tokenModel.ts";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
 export const userRouter: Router = express.Router();
+const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
 dotenv.config();
 
@@ -109,6 +111,19 @@ userRouter.post(
           message: "Неверный логин или пароль",
         });
       }
+
+      const token = randomBytes(32).toString("hex");
+      const tokenHash = createHash("sha256").update(token).digest("hex");
+      const expiresAt = new Date(Date.now() + SESSION_DURATION_MS);
+
+      await createSession(user.id, tokenHash, expiresAt);
+
+      res.cookie("session", token, {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        expires: expiresAt,
+      });
 
       res.json({
         message: "Авторизация успешна",
