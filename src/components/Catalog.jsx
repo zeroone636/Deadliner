@@ -19,17 +19,15 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function Catalog() {
+export default function Catalog({ onAdd }) {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Поиск: q - введённый текст, show() проверяет, подходит ли карточка
   const q = query.trim().toLowerCase();
   const show = (text) => !q || text.toLowerCase().includes(q);
 
-  // Текст для поиска: название + описание каждой карточки
   const text1 = "Гарантия Срок действия ваших гарантий";
   const text2 = "Страховки Страховые полисы и договоры";
   const text3 = "Договоры Важные договоры и соглашения";
@@ -105,6 +103,11 @@ export default function Catalog() {
           </label>
 
           <div className="topbar__right">
+            <button className="AddDocument" aria-label="добавление документа" onClick={onAdd}>
+              <span className="AddDocument__dot">
+                <img src={plus} alt="картинка плюса" />
+              </span>
+            </button>
             <button className="bell" aria-label="Уведомления">
               <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
