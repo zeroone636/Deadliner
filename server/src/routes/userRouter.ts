@@ -6,18 +6,30 @@ import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
 export const userRouter: Router = express.Router();
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
+// TODO: check email on spec and sanitize
+
 interface AuthBody {
   username: string;
   password: string;
 }
 
+interface RegisterBody {
+  username: string;
+  email: string;
+  password: string;
+}
+
 userRouter.post(
   "/register",
-  async (req: Request<{}, {}, AuthBody>, res: Response) => {
+  async (req: Request<{}, {}, RegisterBody>, res: Response) => {
     try {
-      const { username, password } = req.body;
+      const { username, email, password } = req.body;
 
-      if (typeof username !== "string" || typeof password !== "string") {
+      if (
+        typeof username !== "string" ||
+        typeof email !== "string" ||
+        typeof password !== "string"
+      ) {
         return res.status(400).json({
           success: false,
           message: "Некорректные данные",
@@ -25,6 +37,7 @@ userRouter.post(
       }
 
       const clearUser = username.trim();
+      const clearEmail = email.trim();
 
       if (
         clearUser.length < 3 ||
@@ -49,7 +62,7 @@ userRouter.post(
 
       const hash = await bcrypt.hash(password, 10);
 
-      const createdUser = await createUser(username, hash);
+      const createdUser = await createUser(clearUser, clearEmail, hash);
 
       res.status(201).json({
         success: true,

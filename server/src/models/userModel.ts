@@ -12,7 +12,7 @@ interface FullUser {
 }
 
 export const checkUserExists = async (login: string): Promise<Boolean> => {
-  const user = await db.query("SELECT id FROM users WHERE username = $1", [
+  const user = await db.query("SELECT id FROM users WHERE username = $1 OR email = $1", [
     login,
   ]);
 
@@ -21,11 +21,12 @@ export const checkUserExists = async (login: string): Promise<Boolean> => {
 
 export const createUser = async (
   login: string,
+  email: string,
   password: string,
 ): Promise<User> => {
   const newUser = await db.query(
-    "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id, username",
-    [login, password],
+    "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username",
+    [login, email, password],
   );
 
   return newUser.rows[0];
@@ -33,7 +34,7 @@ export const createUser = async (
 
 export const getUser = async (login: string): Promise<FullUser> => {
   const checkUser = await db.query(
-    "SELECT id, username, password FROM users WHERE username = $1",
+    "SELECT id, username, password FROM users WHERE username = $1 OR email = $1",
     [login],
   );
 
