@@ -2,14 +2,9 @@ import express, { type Request, type Response, type Router } from "express";
 import { createHash, randomBytes } from "node:crypto";
 import { createSession } from "../models/tokenModel.ts";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
 export const userRouter: Router = express.Router();
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
-
-dotenv.config();
-
-userRouter.use(express.json());
 
 interface AuthBody {
   username: string;
