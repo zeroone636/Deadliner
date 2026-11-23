@@ -6,7 +6,7 @@ import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
 export const userRouter: Router = express.Router();
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
-// TODO: check email on spec and sanitize
+const EMAIL_PATTERN = /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
 
 interface AuthBody {
   username: string;
@@ -38,6 +38,13 @@ userRouter.post(
 
       const clearUser = username.trim();
       const clearEmail = email.trim();
+
+      if (!EMAIL_PATTERN.test(clearEmail)) {
+        return res.status(400).json({
+          success: false,
+          message: "Некорректный email",
+        });
+      }
 
       if (
         clearUser.length < 3 ||
