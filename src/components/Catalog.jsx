@@ -25,6 +25,16 @@ export default function Catalog() {
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Поиск: q - введённый текст, show() проверяет, подходит ли карточка
+  const q = query.trim().toLowerCase();
+  const show = (text) => !q || text.toLowerCase().includes(q);
+
+  // Текст для поиска: название + описание каждой карточки
+  const text1 = "Гарантия Срок действия ваших гарантий";
+  const text2 = "Страховки Страховые полисы и договоры";
+  const text3 = "Договоры Важные договоры и соглашения";
+  const text4 = "Карты Банковские и скидочные карты";
+
   return (
     <div className="app">
       <aside className={`sidebar ${menuOpen ? "is-open" : ""}`}>
@@ -174,85 +184,97 @@ export default function Catalog() {
             </ul>
 
             <div className="grid">
-              <article className={`card ${activeCat === "warranty" ? "is-active" : ""}`}>
-                <div className="card__first">
-                  <div className="card__top">
-                    <div className="mainCardIcon">
-                      <span className="card__icon">
-                        <img id="monitor" src={monitor} alt="картинка монитора" />
-                      </span>
+              {show(text1) && (
+                <article className={`card ${activeCat === "warranty" ? "is-active" : ""}`}>
+                  <div className="card__first">
+                    <div className="card__top">
+                      <div className="mainCardIcon">
+                        <span className="card__icon">
+                          <img id="monitor" src={monitor} alt="картинка монитора" />
+                        </span>
+                      </div>
+                      <h2 className="gridName">Гарантия</h2>
+                      <p>Срок действия ваших гарантий</p>
                     </div>
-                    <h2 className="gridName">Гарантия</h2>
-                    <p>Срок действия ваших гарантий</p>
+                    <div className="arrow_icon">
+                      <button className="card__go" aria-label="Открыть">
+                        <img src={arrow} alt="картинка стрелки" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="arrow_icon">
-                    <button className="card__go" aria-label="Открыть">
-                      <img src={arrow} alt="картинка стрелки" />
-                    </button>
-                  </div>
-                </div>
-                <div className="card__foot">1 документов</div>
-              </article>
+                  <div className="card__foot">1 документов</div>
+                </article>
+              )}
 
-              <article className={`card ${activeCat === "insurance" ? "is-active" : ""}`}>
-                <div className="card__first">
-                  <div className="card__top">
-                    <div className="mainCardIcon">
-                      <span className="card__icon">
-                        <img id="car" src={car} alt="картинка машины" />
-                      </span>
+              {show(text2) && (
+                <article className={`card ${activeCat === "insurance" ? "is-active" : ""}`}>
+                  <div className="card__first">
+                    <div className="card__top">
+                      <div className="mainCardIcon">
+                        <span className="card__icon">
+                          <img id="car" src={car} alt="картинка машины" />
+                        </span>
+                      </div>
+                      <h2 className="gridName">Страховки</h2>
+                      <p>Страховые полисы и договоры</p>
                     </div>
-                    <h2 className="gridName">Страховки</h2>
-                    <p>Страховые полисы и договоры</p>
+                    <div className="arrow_icon">
+                      <button className="card__go" aria-label="Открыть">
+                        <img src={arrow} alt="картинка стрелки" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="arrow_icon">
-                    <button className="card__go" aria-label="Открыть">
-                      <img src={arrow} alt="картинка стрелки" />
-                    </button>
-                  </div>
-                </div>
-                <div className="card__foot">1 документов</div>
-              </article>
+                  <div className="card__foot">1 документов</div>
+                </article>
+              )}
 
-              <article className={`card ${activeCat === "contracts" ? "is-active" : ""}`}>
-                <div className="card__first">
-                  <div className="card__top">
-                    <div className="mainCardIcon">
-                      <span className="card__icon">
-                        <img id="file" src={file} alt="картинка файла" />
-                      </span>
+              {show(text3) && (
+                <article className={`card ${activeCat === "contracts" ? "is-active" : ""}`}>
+                  <div className="card__first">
+                    <div className="card__top">
+                      <div className="mainCardIcon">
+                        <span className="card__icon">
+                          <img id="file" src={file} alt="картинка файла" />
+                        </span>
+                      </div>
+                      <h2 className="gridName">Договоры</h2>
+                      <p>Важные договоры и соглашения</p>
                     </div>
-                    <h2 className="gridName">Договоры</h2>
-                    <p>Важные договоры и соглашения</p>
+                    <div className="arrow_icon">
+                      <button className="card__go" aria-label="Открыть">
+                        <img src={arrow} alt="картинка стрелки" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="arrow_icon">
-                    <button className="card__go" aria-label="Открыть">
-                      <img src={arrow} alt="картинка стрелки" />
-                    </button>
-                  </div>
-                </div>
-                <div className="card__foot">1 документов</div>
-              </article>
+                  <div className="card__foot">1 документов</div>
+                </article>
+              )}
 
-              <article className={`card ${activeCat === "cards" ? "is-active" : ""}`}>
-                <div className="card__first">
-                  <div className="card__top">
-                    <div className="mainCardIcon">
-                      <span className="card__icon">
-                        <img id="card" src={card} alt="картинка банковской карты" />
-                      </span>
+              {show(text4) && (
+                <article className={`card ${activeCat === "cards" ? "is-active" : ""}`}>
+                  <div className="card__first">
+                    <div className="card__top">
+                      <div className="mainCardIcon">
+                        <span className="card__icon">
+                          <img id="card" src={card} alt="картинка банковской карты" />
+                        </span>
+                      </div>
+                      <h2 className="gridName">Карты</h2>
+                      <p>Банковские и скидочные карты</p>
                     </div>
-                    <h2 className="gridName">Карты</h2>
-                    <p>Банковские и скидочные карты</p>
+                    <div className="arrow_icon">
+                      <button className="card__go" aria-label="Открыть">
+                        <img src={arrow} alt="картинка стрелки" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="arrow_icon">
-                    <button className="card__go" aria-label="Открыть">
-                      <img src={arrow} alt="картинка стрелки" />
-                    </button>
-                  </div>
-                </div>
-                <div className="card__foot">1 документов</div>
-              </article>
+                  <div className="card__foot">1 документов</div>
+                </article>
+              )}
+
+              {!show(text1) && !show(text2) && !show(text3) && !show(text4) && (
+                <p className="empty">Ничего не найдено</p>
+              )}
             </div>
           </div>
         </main>
