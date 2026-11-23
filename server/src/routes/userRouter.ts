@@ -60,6 +60,7 @@ userRouter.post(
       console.error(error);
 
       res.status(500).json({
+        success: false,
         message: "Ошибка сервера",
       });
     }
@@ -103,6 +104,7 @@ userRouter.post(
 
       if (!valid) {
         return res.status(401).json({
+          success: false,
           message: "Неверный логин или пароль",
         });
       }
@@ -131,6 +133,7 @@ userRouter.post(
       console.error(error);
 
       res.status(500).json({
+        success: false,
         message: "Ошибка сервера",
       });
     }
