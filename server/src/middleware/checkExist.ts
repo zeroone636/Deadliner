@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from "express";
-import { checkUserExists } from "../models/userModel.ts";
+import { userExists } from "../models/userModel.ts";
 
 export const checkExists = async (
   req: Request,
@@ -9,7 +9,7 @@ export const checkExists = async (
   const { username } = req.body;
 
   const clearUser = username.trim().toLowerCase();
-  const exists = await checkUserExists(clearUser);
+  const exists = await userExists(clearUser);
 
   if (!exists) {
     return res.status(401).json({

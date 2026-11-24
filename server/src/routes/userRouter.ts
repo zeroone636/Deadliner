@@ -2,7 +2,8 @@ import express, { type Request, type Response, type Router } from "express";
 import { createHash, randomBytes } from "node:crypto";
 import { createSession } from "../models/tokenModel.ts";
 import bcrypt from "bcrypt";
-import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
+import { isString } from "../middleware/isString.ts";
+import { userExists, createUser, getUser } from "../models/userModel.ts";
 import { checkExists } from "../middleware/checkExist.ts";
 export const userRouter: Router = express.Router();
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
@@ -23,20 +24,10 @@ interface RegisterBody {
 
 userRouter.post(
   "/register",
+  isString(["username", "email", "password"]),
   async (req: Request<{}, {}, RegisterBody>, res: Response) => {
     try {
       const { username, email, password } = req.body;
-
-      if (
-        typeof username !== "string" ||
-        typeof email !== "string" ||
-        typeof password !== "string"
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: "Некорректные данные",
-        });
-      }
 
       const clearUser = username.trim().toLowerCase();
       const clearEmail = email.trim();
@@ -60,7 +51,7 @@ userRouter.post(
         });
       }
 
-      const exist = await checkUserExists(clearUser);
+      const exist = await userExists(clearUser);
 
       if (exist) {
         return res.status(409).json({
@@ -91,17 +82,11 @@ userRouter.post(
 
 userRouter.post(
   "/login",
+  isString(["username", "password"]),
   checkExists,
   async (req: Request<{}, {}, AuthBody>, res: Response) => {
     try {
       const { username, password } = req.body;
-
-      if (typeof username !== "string" || typeof password !== "string") {
-        return res.status(400).json({
-          success: false,
-          message: "Неверный логин или пароль",
-        });
-      }
 
       const clearUser = username.trim().toLowerCase();
 
@@ -137,6 +122,7 @@ userRouter.post(
       });
 
       res.json({
+        success: true,
         message: "Авторизация успешна",
         user: {
           id: user.id,

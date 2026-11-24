@@ -11,7 +11,7 @@ interface FullUser {
   password: string;
 }
 
-export const checkUserExists = async (login: string): Promise<Boolean> => {
+export const userExists = async (login: string): Promise<boolean> => {
   const user = await db.query(
     "SELECT id FROM users WHERE username = $1 OR email = $1",
     [login],
