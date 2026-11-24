@@ -19,7 +19,7 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function Catalog({ onAdd }) {
+export default function Catalog({ onAdd, onRegister }) {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
@@ -112,7 +112,7 @@ export default function Catalog({ onAdd }) {
               <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
             </button>
-            <button className="avatar" aria-label="Профиль">
+            <button className="avatar" aria-label="Профиль" onClick={onRegister}>
               <span className="avatar__circle">
                 <img src={user} alt="картинка пользователя" />
               </span>
