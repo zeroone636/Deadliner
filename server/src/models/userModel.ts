@@ -12,9 +12,10 @@ interface FullUser {
 }
 
 export const checkUserExists = async (login: string): Promise<Boolean> => {
-  const user = await db.query("SELECT id FROM users WHERE username = $1 OR email = $1", [
-    login,
-  ]);
+  const user = await db.query(
+    "SELECT id FROM users WHERE username = $1 OR email = $1",
+    [login],
+  );
 
   return Boolean(user.rows[0]);
 };

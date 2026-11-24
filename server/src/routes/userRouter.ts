@@ -3,10 +3,12 @@ import { createHash, randomBytes } from "node:crypto";
 import { createSession } from "../models/tokenModel.ts";
 import bcrypt from "bcrypt";
 import { checkUserExists, createUser, getUser } from "../models/userModel.ts";
+import { checkExists } from "../middleware/checkExist.ts";
 export const userRouter: Router = express.Router();
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
-const EMAIL_PATTERN = /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+const EMAIL_PATTERN =
+  /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
 
 interface AuthBody {
   username: string;
@@ -36,7 +38,7 @@ userRouter.post(
         });
       }
 
-      const clearUser = username.trim();
+      const clearUser = username.trim().toLowerCase();
       const clearEmail = email.trim();
 
       if (!EMAIL_PATTERN.test(clearEmail)) {
@@ -89,6 +91,7 @@ userRouter.post(
 
 userRouter.post(
   "/login",
+  checkExists,
   async (req: Request<{}, {}, AuthBody>, res: Response) => {
     try {
       const { username, password } = req.body;
@@ -100,16 +103,7 @@ userRouter.post(
         });
       }
 
-      const clearUser = username.trim();
-
-      const exist = await checkUserExists(clearUser);
-
-      if (!exist) {
-        return res.status(401).json({
-          success: false,
-          message: "Неверный логин или пароль",
-        });
-      }
+      const clearUser = username.trim().toLowerCase();
 
       if (!clearUser || !password) {
         return res.status(400).json({
