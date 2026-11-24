@@ -16,6 +16,8 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
 
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const goTo = (page) => {
     setNav(page);
@@ -25,12 +27,14 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (onRegister) onRegister({ login: login.trim(), email: email.trim() });
+    if (onRegister) onRegister({ login: login.trim(), email: email.trim(), password });
   };
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    if (onLogin) onLogin({ login: login.trim(), email: email.trim() });
+    const form = e.currentTarget.form;
+    if (!form.reportValidity()) return;
+
+    if (onLogin) onLogin({ login: login.trim(), email: email.trim(), password });
   };
 
   return (
@@ -153,6 +157,30 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                     required
                   />
                 </div>
+
+                <div className="rg__field">
+                  <label className="rg__label" htmlFor="rg-password">Пароль</label>
+                  <div className="rg__passwordBox">
+                    <input
+                      id="rg-password"
+                      className="rg__input rg__input--password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Введите ваш пароль"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="rg__toggle"
+                      aria-label={showPassword ? "Скрыть пароль" : "Показать пароль"}
+                      aria-pressed={showPassword}
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? "Скрыть" : "Показать"}
+                    </button>
+                  </div>
+                </div>
               </section>
             </div>
 
@@ -161,7 +189,7 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                 <button type="submit" className="rg__btn rg__btn--register">
                   Зарегистрироваться
                 </button>
-                <button type="submit" className="rg__btn rg__btn--login">
+                <button type="button" className="rg__btn rg__btn--login" onClick={handleLogin}>
                   Войти
                 </button>
               </div>

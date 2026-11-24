@@ -15,7 +15,7 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function AddDocument({ onBack, onSubmit }) {
+export default function AddDocument({ onBack, onSubmit, onRegister }) {
   const [nav, setNav] = useState("catalog");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -104,7 +104,7 @@ export default function AddDocument({ onBack, onSubmit }) {
               <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
             </button>
-            <button className="avatar" aria-label="Профиль">
+            <button className="avatar" aria-label="Профиль" onClick={onRegister}>
               <span className="avatar__circle">
                 <img src={user} alt="картинка пользователя" />
               </span>

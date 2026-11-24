@@ -13,6 +13,7 @@ function App() {
       <AddDocument
         onBack={() => setPage('catalog')}
         onSubmit={() => setPage('catalog')}
+        onRegister={() => setPage('register')}
       />
     )
   }
