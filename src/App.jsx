@@ -28,12 +28,21 @@ function App() {
     )
   }
 
+  if (page === 'notification') {
+    return (
+      <Notification
+        onBack={() => setPage('catalog')}
+      />
+    )
+  }
+
   return (
       <>
         <Catalog
           onAdd={() => setPage('add')}
           onRegister={() => setPage('register')}
         /> {/* ниже пишите  <Notification/> для примера, но не оставляйте*/ }
+        <Notification/>
       </>
   )
 }
