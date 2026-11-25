@@ -1,14 +1,33 @@
 import { useState } from "react";
+import { api } from "../../api/axios";
 import "./catalog.css";
 import "./registration.css";
-import lightning from '../img/lightning.svg'
-import folder from '../img/folder.svg'
-import calendar from '../img/calendar.svg'
-import setting from '../img/setting.svg'
-import coolicon from '../img/coolicon.svg'
-import user from '../img/user.svg'
-import notifications from '../img/notification_outline_dot.svg'
-import loginIcon from '../img/login.svg'
+import lightning from "../img/lightning.svg";
+import folder from "../img/folder.svg";
+import calendar from "../img/calendar.svg";
+import setting from "../img/setting.svg";
+import coolicon from "../img/coolicon.svg";
+import user from "../img/user.svg";
+import notifications from "../img/notification_outline_dot.svg";
+import loginIcon from "../img/login.svg";
+
+const createUser = async (raw) => {
+  try {
+    const data = raw;
+    const response = await api.post("api/users/register", data);
+  } catch (error) {
+    switch (error.status) {
+      case 404:
+        console.error(`${error.status} - Некорректные данные`);
+        break;
+      case 409:
+        console.error(`${error.status} - Пользователь уже существует`);
+        break;
+      default:
+        console.error(error);
+    }
+  }
+};
 
 export default function Registration({ onNavigate, onRegister, onLogin }) {
   const [nav, setNav] = useState("");
@@ -19,6 +38,12 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const raw = {
+    username: login,
+    email,
+    password,
+  };
+
   const goTo = (page) => {
     setNav(page);
     setMenuOpen(false);
@@ -27,14 +52,16 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (onRegister) onRegister({ login: login.trim(), email: email.trim(), password });
+    if (onRegister)
+      onRegister({ login: login.trim(), email: email.trim(), password });
   };
 
   const handleLogin = (e) => {
     const form = e.currentTarget.form;
     if (!form.reportValidity()) return;
 
-    if (onLogin) onLogin({ login: login.trim(), email: email.trim(), password });
+    if (onLogin)
+      onLogin({ login: login.trim(), email: email.trim(), password });
   };
 
   return (
@@ -133,7 +160,9 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
 
               <section className="rg__card rg__formCard">
                 <div className="rg__field">
-                  <label className="rg__label" htmlFor="rg-login">Логин</label>
+                  <label className="rg__label" htmlFor="rg-login">
+                    Логин
+                  </label>
                   <input
                     id="rg-login"
                     className="rg__input"
@@ -146,7 +175,9 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                 </div>
 
                 <div className="rg__field">
-                  <label className="rg__label" htmlFor="rg-email">Email</label>
+                  <label className="rg__label" htmlFor="rg-email">
+                    Email
+                  </label>
                   <input
                     id="rg-email"
                     className="rg__input"
@@ -159,7 +190,9 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                 </div>
 
                 <div className="rg__field">
-                  <label className="rg__label" htmlFor="rg-password">Пароль</label>
+                  <label className="rg__label" htmlFor="rg-password">
+                    Пароль
+                  </label>
                   <div className="rg__passwordBox">
                     <input
                       id="rg-password"
@@ -173,7 +206,9 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                     <button
                       type="button"
                       className="rg__toggle"
-                      aria-label={showPassword ? "Скрыть пароль" : "Показать пароль"}
+                      aria-label={
+                        showPassword ? "Скрыть пароль" : "Показать пароль"
+                      }
                       aria-pressed={showPassword}
                       onClick={() => setShowPassword(!showPassword)}
                     >
@@ -186,10 +221,18 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
 
             <div className="rg__bottom">
               <div className="rg__actions">
-                <button type="submit" className="rg__btn rg__btn--register">
+                <button
+                  type="submit"
+                  className="rg__btn rg__btn--register"
+                  onClick={() => createUser(raw)}
+                >
                   Зарегистрироваться
                 </button>
-                <button type="button" className="rg__btn rg__btn--login" onClick={handleLogin}>
+                <button
+                  type="button"
+                  className="rg__btn rg__btn--login"
+                  onClick={handleLogin}
+                >
                   Войти
                 </button>
               </div>
