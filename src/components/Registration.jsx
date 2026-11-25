@@ -13,7 +13,6 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
   const [nav, setNav] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -131,18 +130,6 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
               </section>
 
               <section className="rg__card rg__formCard">
-                <div className="rg__field">
-                  <label className="rg__label" htmlFor="rg-login">Логин</label>
-                  <input
-                    id="rg-login"
-                    className="rg__input"
-                    type="text"
-                    placeholder="Введите ваш логин"
-                    value={login}
-                    onChange={(e) => setLogin(e.target.value)}
-                    required
-                  />
-                </div>
 
                 <div className="rg__field">
                   <label className="rg__label" htmlFor="rg-email">Email</label>
