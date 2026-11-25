@@ -3,7 +3,6 @@ import Catalog from './components/Catalog'
 import AddDocument from './components/AddDocument'
 import Registration from './components/Registration'
 import Notification from './components/notification'
-import Settings from './components/Settings'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,15 +17,6 @@ function App() {
       />
     )
   }
-
-  if (page === 'settings') {
-  return (
-    <Settings
-      onNavigate={(p) => { if (p === 'catalog') setPage('catalog') }}
-      onLogout={() => setPage('register')}
-    />
-  )
-}
 
   if (page === 'register') {
     return (
@@ -43,7 +33,6 @@ function App() {
         <Catalog
           onAdd={() => setPage('add')}
           onRegister={() => setPage('register')}
-          onSettings={() => setPage('settings')}
         /> {/* ниже пишите  <Notification/> для примера, но не оставляйте*/ }
       </>
   )

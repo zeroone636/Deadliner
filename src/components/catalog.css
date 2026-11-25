@@ -214,6 +214,12 @@ h1 {
   font-size: clamp(15px, 3vw, 20px);
 }
 
+.crumbs {
+  font-size: 11px;
+  padding-top: 10px;
+  color: var(--text);
+}
+
 .content__body {
   display: grid;
   grid-template-columns: 150px 1fr;

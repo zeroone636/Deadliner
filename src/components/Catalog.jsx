@@ -19,7 +19,7 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function Catalog({ onAdd, onRegister, onSettings }) {
+export default function Catalog({ onAdd, onRegister }) {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
@@ -76,7 +76,7 @@ export default function Catalog({ onAdd, onRegister, onSettings }) {
 
           <button
             className={`cats__item ${nav === "settings" ? "is-active" : ""}`}
-            onClick={() => {setNav("settings"); setMenuOpen(false); if (onSettings) onSettings();}}
+            onClick={() => { setNav("settings"); setMenuOpen(false); }}
           >
             <img src={setting} alt="иконка настроек" />
             Настройки
@@ -127,6 +127,9 @@ export default function Catalog({ onAdd, onRegister, onSettings }) {
               <p className="subtitle">
                 Выберите категорию, чтобы посмотреть свои документы
               </p>
+            </div>
+            <div className="crumbs">
+              Главная / <strong>Каталог</strong>
             </div>
           </div>
 
