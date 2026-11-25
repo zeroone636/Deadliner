@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "../components/catalog.css";
-import "../components/addDocument.css";
+import "./catalog.css";
+import "./addDocument.css";
 import lightning from '../img/lightning.svg'
 import folder from '../img/folder.svg'
 import calendar from '../img/calendar.svg'

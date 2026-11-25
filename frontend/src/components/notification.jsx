@@ -1,5 +1,5 @@
 
-import "../components/notification.css";
+import "./notification.css";
 import lightning from '../img/lightning.svg'
 import calendar from '../img/calendar.svg'
 import setting from '../img/setting.svg'
