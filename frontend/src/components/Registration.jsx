@@ -37,6 +37,8 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const raw = {
     username: login,
@@ -56,13 +58,35 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
       onRegister({ login: login.trim(), email: email.trim(), password });
   };
 
-  const handleLogin = (e) => {
-    const form = e.currentTarget.form;
-    if (!form.reportValidity()) return;
+  const handleLogin = async () => {
+  if (isLoggingIn) return;
 
-    if (onLogin)
-      onLogin({ login: login.trim(), email: email.trim(), password });
-  };
+  const username = login.trim();
+
+  if (!username || !password) {
+    setLoginError("Введите логин и пароль");
+    return;
+  }
+
+  setLoginError("");
+  setIsLoggingIn(true);
+
+  try {
+    await api.post("/api/users/login", {
+      username,
+      password,
+    });
+
+    onLogin?.();
+  } catch (error) {
+    setLoginError(
+      error.response?.data?.message ||
+        "Не удалось связаться с сервером"
+    );
+  } finally {
+    setIsLoggingIn(false);
+  }
+};
 
   return (
     <div className="app">
@@ -232,9 +256,11 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                   type="button"
                   className="rg__btn rg__btn--login"
                   onClick={handleLogin}
+                  disabled={isLoggingIn}
                 >
-                  Войти
+                  {isLoggingIn ? "Вход..." : "Войти"}
                 </button>
+                {loginError && <p role="alert">{loginError}</p>}
               </div>
             </div>
           </form>

@@ -1,4 +1,5 @@
 import { db } from "../config/db.ts";
+import type { PoolClient } from "pg";
 
 interface User {
   id: number;
@@ -24,8 +25,9 @@ export const createUser = async (
   login: string,
   email: string,
   password: string,
+  client: Pick<PoolClient, "query"> = db,
 ): Promise<User> => {
-  const newUser = await db.query(
+  const newUser = await client.query(
     "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username",
     [login, email, password],
   );

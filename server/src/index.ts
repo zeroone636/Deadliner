@@ -7,7 +7,10 @@ const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 
 app.use("/api/users", userRouter);
 app.use("/api/documents", documentRouter);
