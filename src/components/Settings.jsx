@@ -10,8 +10,6 @@ import user from '../img/user.svg'
 import notifications from '../img/notification_outline_dot.svg'
 import search from '../img/search-normal.svg'
 
-// onNavigate(page) - вызывается при клике на пункт бокового меню ("catalog", "reminders", "calendar", "settings")
-// onLogout         - вызывается при нажатии «Выйти из аккаунта»
 export default function Settings({ onNavigate, onLogout }) {
   const [nav, setNav] = useState("settings");
   const [menuOpen, setMenuOpen] = useState(false);
