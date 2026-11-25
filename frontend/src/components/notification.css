@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-:root:has(.sidebar-nav) {
+.notification-page {
   font-family: 'Inter', sans-serif;
   color: #ffffff;
   background: #0d0d0f;
@@ -14,36 +14,36 @@
   --orange: #ff7515;
 }
 
-:root:has(.sidebar-nav) * {
+.notification-page * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root:has(.sidebar-nav) body {
+.notification-page {
   min-width: 320px;
   min-height: 100vh;
   background: var(--bg);
 }
 
-:root:has(.sidebar-nav) button,
-:root:has(.sidebar-nav) input {
+.notification-page button,
+.notification-page input {
   font: inherit;
 }
 
-:root:has(.sidebar-nav) button {
+.notification-page button {
   cursor: pointer;
   color: inherit;
   border: none;
 }
 
-:root:has(.sidebar-nav) .app {
+.notification-page {
   display: flex;
   min-height: 100vh;
   background: var(--bg);
 }
 
-:root:has(.sidebar-nav) .sidebar {
+.notification-page .sidebar {
   width: 256px;
   flex: 0 0 256px;
   min-height: 100vh;
@@ -54,28 +54,28 @@
   z-index: 20;
 }
 
-:root:has(.sidebar-nav) .sidebar-header {
+.notification-page .sidebar-header {
   padding: 0 12px;
   margin-bottom: 45px;
 }
 
-:root:has(.sidebar-nav) .logo {
+.notification-page .logo {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-:root:has(.sidebar-nav) .close-menu {
+.notification-page .close-menu {
   display: none;
 }
 
-:root:has(.sidebar-nav) .sidebar-nav {
+.notification-page .sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-:root:has(.sidebar-nav) .nav-item {
+.notification-page .nav-item {
   width: 100%;
   min-height: 43px;
   padding: 0 10px;
@@ -91,23 +91,23 @@
   transition: background .2s;
 }
 
-:root:has(.sidebar-nav) .nav-item svg {
+.notification-page .nav-item svg {
   width: 22px;
   height: 22px;
   flex-shrink: 0;
   stroke-width: 1.7;
 }
 
-:root:has(.sidebar-nav) .nav-item:hover {
+.notification-page .nav-item:hover {
   background: #302136;
 }
 
-:root:has(.sidebar-nav) .nav-item.active {
+.notification-page .nav-item.active {
   background: #403445;
   color: #ffffff;
 }
 
-:root:has(.sidebar-nav) .sidebar-tip {
+.notification-page .sidebar-tip {
   margin-top: auto;
   width: 100%;
   min-height: 124px;
@@ -121,7 +121,7 @@
   font-size: 13px;
 }
 
-:root:has(.sidebar-nav) .tip-zap {
+.notification-page .tip-zap {
   width: 20px;
   height: 20px;
   color: #ffca00;
@@ -129,23 +129,23 @@
   margin-bottom: 9px;
 }
 
-:root:has(.sidebar-nav) .sidebar-tip p {
+.notification-page .sidebar-tip p {
   margin-bottom: 5px;
 }
 
-:root:has(.sidebar-nav) .sidebar-tip strong {
+.notification-page .sidebar-tip strong {
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
 }
 
-:root:has(.sidebar-nav) .main {
+.notification-page .main {
   flex: 1;
   min-width: 0;
   min-height: 100vh;
 }
 
-:root:has(.sidebar-nav) .topbar {
+.notification-page .topbar {
   height: 108px;
   padding: 0 46px 0 30px;
   border-bottom: 1px solid #27232b;
@@ -154,7 +154,7 @@
   gap: 30px;
 }
 
-:root:has(.sidebar-nav) .search-box {
+.notification-page .search-box {
   width: 650px;
   max-width: 65%;
   height: 52px;
@@ -166,7 +166,7 @@
   gap: 12px;
 }
 
-:root:has(.sidebar-nav) .search-box input {
+.notification-page .search-box input {
   flex: 1;
   min-width: 0;
   background: transparent;
@@ -176,29 +176,29 @@
   font-size: 17px;
 }
 
-:root:has(.sidebar-nav) .search-box input::placeholder {
+.notification-page .search-box input::placeholder {
   color: #a39aa7;
 }
 
-:root:has(.sidebar-nav) .search-box input::-webkit-search-cancel-button {
+.notification-page .search-box input::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
-:root:has(.sidebar-nav) .search-box svg {
+.notification-page .search-box svg {
   width: 21px;
   height: 21px;
   color: #aaa2ae;
   stroke-width: 1.5;
 }
 
-:root:has(.sidebar-nav) .top-actions {
+.notification-page .top-actions {
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 29px;
 }
 
-:root:has(.sidebar-nav) .notification-button {
+.notification-page .notification-button {
   position: relative;
   width: 34px;
   height: 38px;
@@ -207,13 +207,13 @@
   background: transparent;
 }
 
-:root:has(.sidebar-nav) .notification-button svg {
+.notification-page .notification-button svg {
   width: 27px;
   height: 27px;
   stroke-width: 2.3;
 }
 
-:root:has(.sidebar-nav) .notification-dot {
+.notification-page .notification-dot {
   position: absolute;
   top: 2px;
   right: 1px;
@@ -223,7 +223,7 @@
   border-radius: 50%;
 }
 
-:root:has(.sidebar-nav) .profile-button {
+.notification-page .profile-button {
   width: 47px;
   height: 47px;
   display: grid;
@@ -232,19 +232,19 @@
   border-radius: 50%;
 }
 
-:root:has(.sidebar-nav) .profile-button svg {
+.notification-page .profile-button svg {
   width: 26px;
   height: 26px;
   stroke-width: 1.7;
 }
 
-:root:has(.sidebar-nav) .content {
+.notification-page .content {
   width: 100%;
   max-width: 1200px;
   padding: 27px 30px 35px;
 }
 
-:root:has(.sidebar-nav) .page-title {
+.notification-page .page-title {
   display: flex;
   align-items: center;
   gap: 17px;
@@ -255,14 +255,14 @@
   letter-spacing: -0.7px;
 }
 
-:root:has(.sidebar-nav) .page-title svg {
+.notification-page .page-title svg {
   width: 56px;
   height: 56px;
   stroke-width: 2.6;
   flex-shrink: 0;
 }
 
-:root:has(.sidebar-nav) .warning-card {
+.notification-page .warning-card {
   width: 100%;
   height: 122px;
   padding: 15px 19px;
@@ -275,7 +275,7 @@
   gap: 25px;
 }
 
-:root:has(.sidebar-nav) .warning-icon {
+.notification-page .warning-icon {
   width: 60px;
   height: 60px;
   color: #ff7515;
@@ -283,7 +283,7 @@
   flex-shrink: 0;
 }
 
-:root:has(.sidebar-nav) .warning-content h2 {
+.notification-page .warning-content h2 {
   color: #ff781b;
   font-size: 23px;
   line-height: 1.35;
@@ -291,19 +291,19 @@
   margin-bottom: 5px;
 }
 
-:root:has(.sidebar-nav) .warning-content p {
+.notification-page .warning-content p {
   color: #aaa0a8;
   font-size: 17px;
   line-height: 1.4;
 }
 
-:root:has(.sidebar-nav) .reminders-list {
+.notification-page .reminders-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-:root:has(.sidebar-nav) .reminder-card {
+.notification-page .reminder-card {
   width: 100%;
   min-height: 100px;
   padding: 11px 13px;
@@ -317,12 +317,12 @@
   cursor: pointer;
 }
 
-:root:has(.sidebar-nav) .reminder-card:hover {
+.notification-page .reminder-card:hover {
   background: #26102e;
   border-color: #79418c;
 }
 
-:root:has(.sidebar-nav) .reminder-icon {
+.notification-page .reminder-icon {
   width: 54px;
   height: 54px;
   flex-shrink: 0;
@@ -330,31 +330,31 @@
   place-items: center;
 }
 
-:root:has(.sidebar-nav) .reminder-icon svg {
+.notification-page .reminder-icon svg {
   width: 52px;
   height: 52px;
   stroke-width: 1.7;
 }
 
-:root:has(.sidebar-nav) .reminder-info {
+.notification-page .reminder-info {
   flex: 1;
   min-width: 0;
 }
 
-:root:has(.sidebar-nav) .reminder-info h3 {
+.notification-page .reminder-info h3 {
   font-size: 21px;
   font-weight: 400;
   line-height: 1.35;
   margin-bottom: 1px;
 }
 
-:root:has(.sidebar-nav) .reminder-info p {
+.notification-page .reminder-info p {
   font-size: 16px;
   line-height: 1.4;
   color: #eee8f0;
 }
 
-:root:has(.sidebar-nav) .deadline {
+.notification-page .deadline {
   min-width: 108px;
   min-height: 42px;
   padding: 7px 12px;
@@ -367,25 +367,25 @@
   font-size: 16px;
 }
 
-:root:has(.sidebar-nav) .deadline.orange {
+.notification-page .deadline.orange {
   color: #ff7915;
   border-color: #ff7900;
   background: #351b12;
 }
 
-:root:has(.sidebar-nav) .deadline.gray {
+.notification-page .deadline.gray {
   color: #ffffff;
   border-color: #77717b;
   background: #48414b;
 }
 
-:root:has(.sidebar-nav) .deadline.red {
+.notification-page .deadline.red {
   color: #ff2929;
   border-color: #ff2525;
   background: #351019;
 }
 
-:root:has(.sidebar-nav) .card-arrow {
+.notification-page .card-arrow {
   color: white;
   font-size: 33px;
   font-weight: 300;
@@ -393,13 +393,13 @@
   margin-left: -12px;
 }
 
-:root:has(.sidebar-nav) .empty-state {
+.notification-page .empty-state {
   text-align: center;
   color: var(--muted);
   padding: 30px;
 }
 
-:root:has(.sidebar-nav) .add-reminder {
+.notification-page .add-reminder {
   width: 100%;
   height: 98px;
   margin-top: 10px;
@@ -417,12 +417,12 @@
   transition: background .2s, border-color .2s;
 }
 
-:root:has(.sidebar-nav) .add-reminder:hover {
+.notification-page .add-reminder:hover {
   background: #2a1033;
   border-color: #8a39a1;
 }
 
-:root:has(.sidebar-nav) .add-reminder svg {
+.notification-page .add-reminder svg {
   width: 55px;
   height: 55px;
   color: #d0c8d2;
@@ -430,21 +430,21 @@
   flex-shrink: 0;
 }
 
-:root:has(.sidebar-nav) .mobile-header,
-:root:has(.sidebar-nav) .bottom-navigation,
-:root:has(.sidebar-nav) .overlay {
+.notification-page .mobile-header,
+.notification-page .bottom-navigation,
+.notification-page .overlay {
   display: none;
 }
 
 @media (max-width: 768px) {
 
-  :root:has(.sidebar-nav) .app {
+  .notification-page {
     display: block;
     min-height: 100vh;
     padding-bottom: 76px;
   }
 
-  :root:has(.sidebar-nav) .sidebar {
+  .notification-page .sidebar {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -457,11 +457,11 @@
     z-index: 101;
   }
 
-  :root:has(.sidebar-nav) .sidebar.sidebar-open {
+  .notification-page .sidebar.sidebar-open {
     transform: translateX(0);
   }
 
-  :root:has(.sidebar-nav) .sidebar-header {
+  .notification-page .sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -469,22 +469,22 @@
     padding: 0 7px;
   }
 
-  :root:has(.sidebar-nav) .sidebar-header .logo {
+  .notification-page .sidebar-header .logo {
     font-size: 20px;
   }
 
-  :root:has(.sidebar-nav) .close-menu {
+  .notification-page .close-menu {
     display: grid;
     place-items: center;
     background: transparent;
     color: white;
   }
 
-  :root:has(.sidebar-nav) .sidebar-tip {
+  .notification-page .sidebar-tip {
     display: none;
   }
 
-  :root:has(.sidebar-nav) .overlay {
+  .notification-page .overlay {
     display: block;
     position: fixed;
     inset: 0;
@@ -492,7 +492,7 @@
     z-index: 100;
   }
 
-  :root:has(.sidebar-nav) .topbar {
+  .notification-page .topbar {
     height: 128px;
     padding: 12px 20px 10px;
     display: grid;
@@ -502,7 +502,7 @@
     row-gap: 11px;
   }
 
-  :root:has(.sidebar-nav) .mobile-header {
+  .notification-page .mobile-header {
     display: flex;
     align-items: center;
     gap: 11px;
@@ -510,7 +510,7 @@
     grid-row: 1;
   }
 
-  :root:has(.sidebar-nav) .menu-button {
+  .notification-page .menu-button {
     width: 24px;
     height: 24px;
     display: grid;
@@ -519,17 +519,17 @@
     background: transparent;
   }
 
-  :root:has(.sidebar-nav) .menu-button svg {
+  .notification-page .menu-button svg {
     width: 22px;
     height: 22px;
   }
 
-  :root:has(.sidebar-nav) .mobile-logo {
+  .notification-page .mobile-logo {
     font-size: 16px;
     font-weight: 700;
   }
 
-  :root:has(.sidebar-nav) .search-box {
+  .notification-page .search-box {
     width: 100%;
     max-width: none;
     height: 43px;
@@ -540,61 +540,61 @@
     border-radius: 12px;
   }
 
-  :root:has(.sidebar-nav) .search-box input {
+  .notification-page .search-box input {
     font-size: 11px;
   }
 
-  :root:has(.sidebar-nav) .search-box svg {
+  .notification-page .search-box svg {
     width: 16px;
     height: 16px;
   }
 
-  :root:has(.sidebar-nav) .top-actions {
+  .notification-page .top-actions {
     grid-column: 2;
     grid-row: 2;
     gap: 13px;
     margin: 0;
   }
 
-  :root:has(.sidebar-nav) .notification-button {
+  .notification-page .notification-button {
     width: 24px;
     height: 28px;
   }
 
-  :root:has(.sidebar-nav) .notification-button svg {
+  .notification-page .notification-button svg {
     width: 21px;
     height: 21px;
   }
 
-  :root:has(.sidebar-nav) .profile-button {
+  .notification-page .profile-button {
     width: 36px;
     height: 36px;
   }
 
-  :root:has(.sidebar-nav) .profile-button svg {
+  .notification-page .profile-button svg {
     width: 21px;
     height: 21px;
   }
 
-  :root:has(.sidebar-nav) .content {
+  .notification-page .content {
     padding: 16px 20px 20px;
     max-width: none;
   }
 
-  :root:has(.sidebar-nav) .page-title {
+  .notification-page .page-title {
     gap: 9px;
     font-size: 17px;
     margin-bottom: 24px;
     letter-spacing: 0;
   }
 
-  :root:has(.sidebar-nav) .page-title svg {
+  .notification-page .page-title svg {
     width: 27px;
     height: 27px;
     stroke-width: 2.3;
   }
 
-  :root:has(.sidebar-nav) .warning-card {
+  .notification-page .warning-card {
     min-height: 104px;
     height: auto;
     padding: 12px 11px;
@@ -603,69 +603,69 @@
     gap: 12px;
   }
 
-  :root:has(.sidebar-nav) .warning-icon {
+  .notification-page .warning-icon {
     width: 34px;
     height: 34px;
     stroke-width: 1.8;
   }
 
-  :root:has(.sidebar-nav) .warning-content h2 {
+  .notification-page .warning-content h2 {
     font-size: 11px;
     line-height: 1.5;
     margin-bottom: 8px;
   }
 
-  :root:has(.sidebar-nav) .warning-content p {
+  .notification-page .warning-content p {
     font-size: 9px;
     line-height: 1.5;
   }
 
-  :root:has(.sidebar-nav) .reminders-list {
+  .notification-page .reminders-list {
     gap: 12px;
   }
 
-  :root:has(.sidebar-nav) .reminder-card {
+  .notification-page .reminder-card {
     min-height: 86px;
     padding: 9px 10px;
     gap: 10px;
     border-radius: 12px;
   }
 
-  :root:has(.sidebar-nav) .reminder-icon {
+  .notification-page .reminder-icon {
     width: 33px;
     height: 38px;
   }
 
-  :root:has(.sidebar-nav) .reminder-icon svg {
+  .notification-page .reminder-icon svg {
     width: 30px;
     height: 30px;
     stroke-width: 1.8;
   }
 
-  :root:has(.sidebar-nav) .reminder-info h3 {
+  .notification-page .reminder-info h3 {
     font-size: 11px;
     line-height: 1.5;
     margin-bottom: 2px;
   }
 
-  :root:has(.sidebar-nav) .reminder-info p {
+  .notification-page .reminder-info p {
     font-size: 9px;
     line-height: 1.4;
   }
 
-  :root:has(.sidebar-nav) .deadline {
+  .notification-page .deadline {
     min-width: 0;
     min-height: 25px;
     padding: 4px 9px;
     font-size: 8px;
   }
 
-  :root:has(.sidebar-nav) .card-arrow {
+  .notification-page .card-arrow {
     font-size: 20px;
     margin-left: -5px;
   }
 
-  :root:has(.sidebar-nav) .add-reminder {
+  .notification-page .add-reminder {
     height: 52px;
     min-height: 52px;
     margin-top: 17px;
@@ -675,13 +675,13 @@
     font-size: 10px;
   }
 
-  :root:has(.sidebar-nav) .add-reminder svg {
+  .notification-page .add-reminder svg {
     width: 23px;
     height: 23px;
     stroke-width: 1.6;
   }
 
-  :root:has(.sidebar-nav) .bottom-navigation {
+  .notification-page .bottom-navigation {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -696,7 +696,7 @@
     z-index: 50;
   }
 
-  :root:has(.sidebar-nav) .bottom-nav-item {
+  .notification-page .bottom-nav-item {
     min-width: 55px;
     height: 57px;
     padding: 7px 5px;
@@ -710,18 +710,18 @@
     background: transparent;
   }
 
-  :root:has(.sidebar-nav) .bottom-nav-item svg {
+  .notification-page .bottom-nav-item svg {
     width: 19px;
     height: 19px;
     stroke-width: 1.7;
   }
 
-  :root:has(.sidebar-nav) .bottom-nav-item span {
+  .notification-page .bottom-nav-item span {
     font-size: 7px;
     white-space: nowrap;
   }
 
-  :root:has(.sidebar-nav) .bottom-nav-item.active {
+  .notification-page .bottom-nav-item.active {
     background: #403445;
     color: #ffffff;
   }
@@ -729,109 +729,109 @@
 
 @media (max-width: 360px) {
 
-  :root:has(.sidebar-nav) .content {
+  .notification-page .content {
     padding-left: 14px;
     padding-right: 14px;
   }
 
-  :root:has(.sidebar-nav) .topbar {
+  .notification-page .topbar {
     padding-left: 14px;
     padding-right: 14px;
     column-gap: 8px;
   }
 
-  :root:has(.sidebar-nav) .reminder-card {
+  .notification-page .reminder-card {
     gap: 7px;
   }
 
-  :root:has(.sidebar-nav) .reminder-info h3 {
+  .notification-page .reminder-info h3 {
     font-size: 10px;
   }
 
-  :root:has(.sidebar-nav) .deadline {
+  .notification-page .deadline {
     padding: 3px 6px;
     font-size: 7px;
   }
 
-  :root:has(.sidebar-nav) .bottom-nav-item {
+  .notification-page .bottom-nav-item {
     min-width: 48px;
   }
 }
-:root:has(.sidebar-nav) .nav-item img {
+.notification-page .nav-item img {
   width: 22px;
   height: 22px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .sidebar-tip img {
+.notification-page .sidebar-tip img {
   width: 20px;
   height: 20px;
   margin-bottom: 9px;
 }
 
-:root:has(.sidebar-nav) .search-box img {
+.notification-page .search-box img {
   width: 20px;
   height: 20px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .notification-button img {
+.notification-page .notification-button img {
   width: 27px;
   height: 27px;
 }
 
-:root:has(.sidebar-nav) .profile-button img {
+.notification-page .profile-button img {
   width: 25px;
   height: 25px;
 }
 
-:root:has(.sidebar-nav) .page-title img {
+.notification-page .page-title img {
   width: 56px;
   height: 56px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .warning-card > img {
+.notification-page .warning-card > img {
   width: 60px;
   height: 60px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .reminder-icon img {
+.notification-page .reminder-icon img {
   width: 52px;
   height: 52px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .add-reminder img {
+.notification-page .add-reminder img {
   width: 55px;
   height: 55px;
   object-fit: contain;
 }
 
-:root:has(.sidebar-nav) .bottom-nav-item img {
+.notification-page .bottom-nav-item img {
   width: 19px;
   height: 19px;
   object-fit: contain;
 }
 
 @media (max-width: 768px) {
-  :root:has(.sidebar-nav) .page-title img {
+  .notification-page .page-title img {
     width: 27px;
     height: 27px;
   }
 
-  :root:has(.sidebar-nav) .warning-card > img {
+  .notification-page .warning-card > img {
     width: 34px;
     height: 34px;
   }
 
-  :root:has(.sidebar-nav) .reminder-icon img {
+  .notification-page .reminder-icon img {
     width: 30px;
     height: 30px;
   }
 
-  :root:has(.sidebar-nav) .add-reminder img {
+  .notification-page .add-reminder img {
     width: 23px;
     height: 23px;
   }

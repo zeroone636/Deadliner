@@ -37,13 +37,11 @@ function App() {
   }
 
   return (
-      <>
-        <Catalog
-          onAdd={() => setPage('add')}
-          onRegister={() => setPage('register')}
-        /> {/* ниже пишите  <Notification/> для примера, но не оставляйте*/ }
-        <Notification/>
-      </>
+    <Catalog
+      onAdd={() => setPage('add')}
+      onRegister={() => setPage('register')}
+      onNotifications={() => setPage('notification')}
+    />
   )
 }
 

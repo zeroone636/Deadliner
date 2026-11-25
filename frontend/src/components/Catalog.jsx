@@ -19,7 +19,7 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function Catalog({ onAdd, onRegister }) {
+export default function Catalog({ onAdd, onRegister, onNotifications }) {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
@@ -60,7 +60,7 @@ export default function Catalog({ onAdd, onRegister }) {
 
           <button
             className={`cats__item ${nav === "reminders" ? "is-active" : ""}`}
-            onClick={() => { setNav("reminders"); setMenuOpen(false); }}
+            onClick={onNotifications}
           >
             <img src={coolicon} alt="иконка напоминаний" />
             Напоминания
@@ -108,7 +108,7 @@ export default function Catalog({ onAdd, onRegister }) {
                 <img src={plus} alt="картинка плюса" />
               </span>
             </button>
-            <button className="bell" aria-label="Уведомления">
+            <button className="bell" onClick={onNotifications} aria-label="Уведомления">
               <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
             </button>

@@ -15,7 +15,7 @@ import house from '../img/house.svg'
 import clock from '../img/clock.svg'
 import { useState } from 'react'
 
-export default function Notification(){
+export default function Notification({ onBack }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchText, setSearchText] = useState('')
 
@@ -64,7 +64,7 @@ export default function Notification(){
   }
 
   const navigation = [
-    { title: 'Каталог', icon: folder },
+    { title: 'Каталог', icon: folder, onClick: onBack },
     { title: 'Напоминания', icon: coolicon, active: true },
     { title: 'Календарь', icon: calendar },
     { title: 'Настройки', icon: setting }
@@ -75,7 +75,7 @@ export default function Notification(){
   )
 
   return (
-    <div className="app">
+    <div className="notification-page">
 
       {menuOpen && (
         <div
@@ -100,6 +100,7 @@ export default function Notification(){
           {navigation.map(item => (
             <button
               key={item.title}
+              onClick={item.onClick}
               className={`nav-item ${item.active ? 'active' : ''}`}
             >
               <img src={item.icon} alt="" />
@@ -223,6 +224,7 @@ export default function Notification(){
 
             <button
               key={item.title}
+              onClick={item.onClick}
               className={`bottom-nav-item ${item.active ? 'active' : ''}`}
             >
               <img src={item.icon} alt="" />
