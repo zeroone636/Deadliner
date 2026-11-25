@@ -18,6 +18,10 @@ function App() {
     )
   }
 
+  
+  
+
+
   if (page === 'register') {
     return (
       <Registration
