@@ -1,0 +1,838 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.notification-page {
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  background: #0d0d0f;
+
+  --bg: #0d0d0f;
+  --sidebar: #19091f;
+  --card: #1b0920;
+  --border: #514253;
+  --muted: #aaa1ad;
+  --purple: #a000ff;
+  --orange: #ff7515;
+}
+
+.notification-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.notification-page {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.notification-page button,
+.notification-page input {
+  font: inherit;
+}
+
+.notification-page button {
+  cursor: pointer;
+  color: inherit;
+  border: none;
+}
+
+.notification-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.notification-page .sidebar {
+  width: 256px;
+  flex: 0 0 256px;
+  min-height: 100vh;
+  padding: 27px 16px 50px;
+  background: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.notification-page .sidebar-header {
+  padding: 0 12px;
+  margin-bottom: 45px;
+}
+
+.notification-page .logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.notification-page .close-menu {
+  display: none;
+}
+
+.notification-page .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notification-page .nav-item {
+  width: 100%;
+  min-height: 43px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 12px;
+  background: transparent;
+  color: #c1b9c5;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background .2s;
+}
+
+.notification-page .nav-item svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  stroke-width: 1.7;
+}
+
+.notification-page .nav-item:hover {
+  background: #302136;
+}
+
+.notification-page .nav-item.active {
+  background: #403445;
+  color: #ffffff;
+}
+
+.notification-page .sidebar-tip {
+  margin-top: auto;
+  width: 100%;
+  min-height: 124px;
+  padding: 15px 12px;
+  background: #37313e;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #aaa1ae;
+  font-size: 13px;
+}
+
+.notification-page .tip-zap {
+  width: 20px;
+  height: 20px;
+  color: #ffca00;
+  fill: #ffca00;
+  margin-bottom: 9px;
+}
+
+.notification-page .sidebar-tip p {
+  margin-bottom: 5px;
+}
+
+.notification-page .sidebar-tip strong {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.notification-page .main {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.notification-page .topbar {
+  height: 108px;
+  padding: 0 46px 0 30px;
+  border-bottom: 1px solid #27232b;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.notification-page .search-box {
+  width: 650px;
+  max-width: 65%;
+  height: 52px;
+  padding: 0 17px;
+  background: #19091f;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-page .search-box input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.notification-page .search-box input::placeholder {
+  color: #a39aa7;
+}
+
+.notification-page .search-box input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.notification-page .search-box svg {
+  width: 21px;
+  height: 21px;
+  color: #aaa2ae;
+  stroke-width: 1.5;
+}
+
+.notification-page .top-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 29px;
+}
+
+.notification-page .notification-button {
+  position: relative;
+  width: 34px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.notification-page .notification-button svg {
+  width: 27px;
+  height: 27px;
+  stroke-width: 2.3;
+}
+
+.notification-page .notification-dot {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.notification-page .profile-button {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  background: #9200ff;
+  border-radius: 50%;
+}
+
+.notification-page .profile-button svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.7;
+}
+
+.notification-page .content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 27px 30px 35px;
+}
+
+.notification-page .page-title {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 23px;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.notification-page .page-title svg {
+  width: 56px;
+  height: 56px;
+  stroke-width: 2.6;
+  flex-shrink: 0;
+}
+
+.notification-page .warning-card {
+  width: 100%;
+  height: 122px;
+  padding: 15px 19px;
+  margin-bottom: 58px;
+  border: 1px solid #ff7100;
+  border-radius: 17px;
+  background: #321e12;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.notification-page .warning-icon {
+  width: 60px;
+  height: 60px;
+  color: #ff7515;
+  stroke-width: 1.9;
+  flex-shrink: 0;
+}
+
+.notification-page .warning-content h2 {
+  color: #ff781b;
+  font-size: 23px;
+  line-height: 1.35;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.notification-page .warning-content p {
+  color: #aaa0a8;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.notification-page .reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification-page .reminder-card {
+  width: 100%;
+  min-height: 100px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: background .2s, border-color .2s;
+  cursor: pointer;
+}
+
+.notification-page .reminder-card:hover {
+  background: #26102e;
+  border-color: #79418c;
+}
+
+.notification-page .reminder-icon {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.notification-page .reminder-icon svg {
+  width: 52px;
+  height: 52px;
+  stroke-width: 1.7;
+}
+
+.notification-page .reminder-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-page .reminder-info h3 {
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 1px;
+}
+
+.notification-page .reminder-info p {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #eee8f0;
+}
+
+.notification-page .deadline {
+  min-width: 108px;
+  min-height: 42px;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 30px;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.notification-page .deadline.orange {
+  color: #ff7915;
+  border-color: #ff7900;
+  background: #351b12;
+}
+
+.notification-page .deadline.gray {
+  color: #ffffff;
+  border-color: #77717b;
+  background: #48414b;
+}
+
+.notification-page .deadline.red {
+  color: #ff2929;
+  border-color: #ff2525;
+  background: #351019;
+}
+
+.notification-page .card-arrow {
+  color: white;
+  font-size: 33px;
+  font-weight: 300;
+  line-height: 1;
+  margin-left: -12px;
+}
+
+.notification-page .empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+}
+
+.notification-page .add-reminder {
+  width: 100%;
+  height: 98px;
+  margin-top: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 400;
+  text-align: left;
+  transition: background .2s, border-color .2s;
+}
+
+.notification-page .add-reminder:hover {
+  background: #2a1033;
+  border-color: #8a39a1;
+}
+
+.notification-page .add-reminder svg {
+  width: 55px;
+  height: 55px;
+  color: #d0c8d2;
+  stroke-width: 1.6;
+  flex-shrink: 0;
+}
+
+.notification-page .mobile-header,
+.notification-page .bottom-navigation,
+.notification-page .overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .notification-page {
+    display: block;
+    min-height: 100vh;
+    padding-bottom: 76px;
+  }
+
+  .notification-page .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    min-height: 100%;
+    padding: 24px 16px;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 101;
+  }
+
+  .notification-page .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .notification-page .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 0 7px;
+  }
+
+  .notification-page .sidebar-header .logo {
+    font-size: 20px;
+  }
+
+  .notification-page .close-menu {
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: white;
+  }
+
+  .notification-page .sidebar-tip {
+    display: none;
+  }
+
+  .notification-page .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    z-index: 100;
+  }
+
+  .notification-page .topbar {
+    height: 128px;
+    padding: 12px 20px 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 32px 46px;
+    column-gap: 12px;
+    row-gap: 11px;
+  }
+
+  .notification-page .mobile-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .notification-page .menu-button {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: transparent;
+  }
+
+  .notification-page .menu-button svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .notification-page .mobile-logo {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .notification-page .search-box {
+    width: 100%;
+    max-width: none;
+    height: 43px;
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0 12px;
+    gap: 7px;
+    border-radius: 12px;
+  }
+
+  .notification-page .search-box input {
+    font-size: 11px;
+  }
+
+  .notification-page .search-box svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .notification-page .top-actions {
+    grid-column: 2;
+    grid-row: 2;
+    gap: 13px;
+    margin: 0;
+  }
+
+  .notification-page .notification-button {
+    width: 24px;
+    height: 28px;
+  }
+
+  .notification-page .notification-button svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .notification-page .profile-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .notification-page .profile-button svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .notification-page .content {
+    padding: 16px 20px 20px;
+    max-width: none;
+  }
+
+  .notification-page .page-title {
+    gap: 9px;
+    font-size: 17px;
+    margin-bottom: 24px;
+    letter-spacing: 0;
+  }
+
+  .notification-page .page-title svg {
+    width: 27px;
+    height: 27px;
+    stroke-width: 2.3;
+  }
+
+  .notification-page .warning-card {
+    min-height: 104px;
+    height: auto;
+    padding: 12px 11px;
+    margin-bottom: 19px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+
+  .notification-page .warning-icon {
+    width: 34px;
+    height: 34px;
+    stroke-width: 1.8;
+  }
+
+  .notification-page .warning-content h2 {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .notification-page .warning-content p {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .notification-page .reminders-list {
+    gap: 12px;
+  }
+
+  .notification-page .reminder-card {
+    min-height: 86px;
+    padding: 9px 10px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .notification-page .reminder-icon {
+    width: 33px;
+    height: 38px;
+  }
+
+  .notification-page .reminder-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke-width: 1.8;
+  }
+
+  .notification-page .reminder-info h3 {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 2px;
+  }
+
+  .notification-page .reminder-info p {
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .notification-page .deadline {
+    min-width: 0;
+    min-height: 25px;
+    padding: 4px 9px;
+    font-size: 8px;
+  }
+
+  .notification-page .card-arrow {
+    font-size: 20px;
+    margin-left: -5px;
+  }
+
+  .notification-page .add-reminder {
+    height: 52px;
+    min-height: 52px;
+    margin-top: 17px;
+    padding: 8px 10px;
+    gap: 10px;
+    border-radius: 11px;
+    font-size: 10px;
+  }
+
+  .notification-page .add-reminder svg {
+    width: 23px;
+    height: 23px;
+    stroke-width: 1.6;
+  }
+
+  .notification-page .bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    padding: 5px 8px;
+    background: #19091f;
+    border-top: 1px solid #35263b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50;
+  }
+
+  .notification-page .bottom-nav-item {
+    min-width: 55px;
+    height: 57px;
+    padding: 7px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 10px;
+    color: #aaa1ad;
+    background: transparent;
+  }
+
+  .notification-page .bottom-nav-item svg {
+    width: 19px;
+    height: 19px;
+    stroke-width: 1.7;
+  }
+
+  .notification-page .bottom-nav-item span {
+    font-size: 7px;
+    white-space: nowrap;
+  }
+
+  .notification-page .bottom-nav-item.active {
+    background: #403445;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .notification-page .content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .notification-page .topbar {
+    padding-left: 14px;
+    padding-right: 14px;
+    column-gap: 8px;
+  }
+
+  .notification-page .reminder-card {
+    gap: 7px;
+  }
+
+  .notification-page .reminder-info h3 {
+    font-size: 10px;
+  }
+
+  .notification-page .deadline {
+    padding: 3px 6px;
+    font-size: 7px;
+  }
+
+  .notification-page .bottom-nav-item {
+    min-width: 48px;
+  }
+}
+.notification-page .nav-item img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.notification-page .sidebar-tip img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 9px;
+}
+
+.notification-page .search-box img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.notification-page .notification-button img {
+  width: 27px;
+  height: 27px;
+}
+
+.notification-page .profile-button img {
+  width: 25px;
+  height: 25px;
+}
+
+.notification-page .page-title img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.notification-page .warning-card > img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.notification-page .reminder-icon img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.notification-page .add-reminder img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.notification-page .bottom-nav-item img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .notification-page .page-title img {
+    width: 27px;
+    height: 27px;
+  }
+
+  .notification-page .warning-card > img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .notification-page .reminder-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .notification-page .add-reminder img {
+    width: 23px;
+    height: 23px;
+  }
+}

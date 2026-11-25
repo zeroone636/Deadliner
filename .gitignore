@@ -1,4 +1,14 @@
+frontend/node_modules
+frontend/.env
+frontend/.env.*
+frontend/!.env.example
+frontend/dist
+
+server/node_modules
+server/.env
+server/.env.*
+server/!.env.example
+server/dist
+
 .idea
 .vscode
-
-node_modules
