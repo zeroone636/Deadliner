@@ -49,11 +49,7 @@ export const registerUser = async (
 
   const hash = await hashPassword(password);
 
-  const { user, session } = await registerWithSession(
-    username,
-    email,
-    password,
-  );
+  const { user, session } = await registerWithSession(username, email, hash);
 
   return { status: "ok", user, session };
 };
