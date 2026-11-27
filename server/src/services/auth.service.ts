@@ -2,8 +2,8 @@ import { db } from "../config/db.ts";
 import type { PoolClient } from "pg";
 
 import { randomBytes, createHash } from "node:crypto";
-import { createUser, userExists } from "../models/userModel.ts";
-import { hashPassword } from "../utils/password.ts";
+import { createUser, getUser, userExists } from "../models/userModel.ts";
+import { hashPassword, verifyPassword } from "../utils/password.ts";
 import { createSession } from "../models/tokenModel.ts";
 
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
@@ -54,6 +54,18 @@ export const registerUser = async (
     email,
     password,
   );
+
+  return { status: "ok", user, session };
+};
+
+export const loginUser = async (username: string, password: string) => {
+  const user = await getUser(username);
+
+  const valid = await verifyPassword(password, user.password);
+
+  if (!valid) return { status: "wrong_password" };
+
+  const session = await issueSession(user.id);
 
   return { status: "ok", user, session };
 };
