@@ -11,24 +11,6 @@ import user from "../img/user.svg";
 import notifications from "../img/notification_outline_dot.svg";
 import loginIcon from "../img/login.svg";
 
-const createUser = async (raw) => {
-  try {
-    const data = raw;
-    const response = await api.post("api/users/register", data);
-  } catch (error) {
-    switch (error.status) {
-      case 404:
-        console.error(`${error.status} - Некорректные данные`);
-        break;
-      case 409:
-        console.error(`${error.status} - Пользователь уже существует`);
-        break;
-      default:
-        console.error(error);
-    }
-  }
-};
-
 export default function Registration({ onNavigate, onRegister, onLogin }) {
   const [nav, setNav] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,11 +34,19 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
     if (onNavigate) onNavigate(page);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    if (onRegister)
-      onRegister({ login: login.trim(), email: email.trim(), password });
-  };
+  const handleRegister = async (event) => {
+  event.preventDefault()
+  setLoginError('')
+
+  try {
+    const { data } = await api.post('/api/users/register', raw)
+    onRegister?.(data.user)
+  } catch (error) {
+    setLoginError(
+      error.response?.data?.message || 'Не удалось зарегистрироваться.'
+    )
+  }
+}
 
   const handleLogin = async () => {
   if (isLoggingIn) return;
@@ -72,12 +62,12 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
   setIsLoggingIn(true);
 
   try {
-    await api.post("/api/users/login", {
+    const { data } = await api.post('api/users/login', {
       username,
       password,
     });
+    onLogin?.(data.user);
 
-    onLogin?.();
   } catch (error) {
     setLoginError(
       error.response?.data?.message ||
@@ -248,7 +238,6 @@ export default function Registration({ onNavigate, onRegister, onLogin }) {
                 <button
                   type="submit"
                   className="rg__btn rg__btn--register"
-                  onClick={() => createUser(raw)}
                 >
                   Зарегистрироваться
                 </button>

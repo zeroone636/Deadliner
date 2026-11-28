@@ -4,13 +4,25 @@ import type { PoolClient } from "pg";
 import { randomBytes, createHash } from "node:crypto";
 import { createUser, getUser, userExists } from "../models/userModel.ts";
 import { hashPassword, verifyPassword } from "../utils/password.ts";
-import { createSession } from "../models/tokenModel.ts";
+import { createSession, deleteSession, findSessionUser } from "../models/tokenModel.ts";
 
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
+function hashSessionToken(token: string): string {
+  return createHash("sha256").update(token).digest("hex");
+}
+
+export function getSessionUser(token: string) {
+  return findSessionUser(hashSessionToken(token));
+}
+
+export function revokeSession(token: string) {
+  return deleteSession(hashSessionToken(token));
+}
+
 async function issueSession(userId: number, client?: PoolClient) {
   const token = randomBytes(32).toString("hex");
-  const tokenHash = createHash("sha256").update(token).digest("hex");
+  const tokenHash = hashSessionToken(token);
   const expiresAt = new Date(Date.now() + SESSION_DURATION_MS);
   await createSession(userId, tokenHash, expiresAt, client);
   return { token, expiresAt };

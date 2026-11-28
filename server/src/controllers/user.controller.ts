@@ -1,9 +1,10 @@
 import { isString } from "../middleware/isString.ts";
-import { loginUser, registerUser } from "../services/auth.service.ts";
+import { loginUser, registerUser, getSessionUser, revokeSession } from "../services/auth.service.ts";
 import { verifyEmail } from "../utils/email.ts";
 import { type CookieOptions, type Request, type Response } from "express";
 
 const COOKIE_TEMPLATE: CookieOptions = {
+  path: "/",
   httpOnly: true,
   sameSite: "lax",
   secure: process.env.NODE_ENV === "production",
@@ -137,3 +138,37 @@ export const loginController = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const meController = async (req: Request, res: Response) => {
+  res.set("Cache-Control", "no-store");
+
+  const token = req.cookies.session;
+  const user = typeof token === "string" && token ? await getSessionUser(token) : null;
+
+  if (!user) {
+    return res.status(401).json({
+      success: false,
+      message: "Пользователь не авторизован",
+    });
+  }
+
+  return res.json({
+    success: true,
+    user,
+  });
+}
+
+export const logoutController = async (req: Request, res: Response) => {
+  const token = req.cookies.session;
+
+  if (typeof token === "string" && token) {
+    await revokeSession(token);
+  }
+
+  res.clearCookie("session", COOKIE_TEMPLATE);
+
+  return res.status(200).json({
+    success: true,
+    message: "Вы успешно вышли из аккаунта",
+  });
+}

@@ -1,4 +1,5 @@
 import express, { type Express, type Request, type Response } from "express";
+import cookieParser from "cookie-parser";
 import { userRouter } from "./routes/userRouter.ts";
 import { documentRouter } from "./routes/documentRouter.ts";
 import cors from "cors";
@@ -7,6 +8,7 @@ const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true,

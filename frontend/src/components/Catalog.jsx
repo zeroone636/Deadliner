@@ -19,7 +19,15 @@ import shield from '../img/shield.svg'
 import umbrella from '../img/umbrella.svg'
 import plus from '../img/plus.svg'
 
-export default function Catalog({ onAdd, onRegister, onNotifications }) {
+export default function Catalog({
+  onAdd,
+  onRegister,
+  onNotifications,
+  user: currentUser,
+  loggingOut,
+  onLogout,
+  authError,
+}) {
   const [nav, setNav] = useState("catalog");
   const [activeCat, setActiveCat] = useState("warranty");
   const [query, setQuery] = useState("");
@@ -112,15 +120,34 @@ export default function Catalog({ onAdd, onRegister, onNotifications }) {
               <img src={notifications} alt="картинка уведомлений" />
               <span className="bell__dot" />
             </button>
-            <button className="avatar" aria-label="Профиль" onClick={onRegister}>
-              <span className="avatar__circle">
-                <img src={user} alt="картинка пользователя" />
-              </span>
-            </button>
+            {currentUser ? (
+              <>
+                <span>{currentUser.username}</span>
+                <button
+                  type="button"
+                  onClick={onLogout}
+                  disabled={loggingOut}
+                >
+                  {loggingOut ? "Выходим…" : "Выйти"}
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="avatar"
+                aria-label="Войти в аккаунт"
+                onClick={onRegister}
+              >
+                <span className="avatar__circle">
+                  <img src={user} alt="" />
+                </span>
+              </button>
+            )}
           </div>
         </header>
 
         <main className="content">
+          {authError && <p role="alert" className="auth-error">{authError}</p>}
           <div className="content__head">
             <div className="classPageAndSubtitle">
               <h1 className="classPage">Каталог документов</h1>
